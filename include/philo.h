@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
+/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:47:55 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/24 06:02:55 by dreix            ###   ########.fr       */
+/*   Updated: 2025/11/24 19:56:28 by darosas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ int		init_struct(t_arguments *args, char **argv);
 int		ft_atoi(const char *s);
 int		ft_isdigit(int c);
 long	get_time(void);
-void	ft_usleep(long milliseconds);
+void	ft_usleep(long milliseconds, t_arguments *args);
 void	print_status(t_philo *philo, char *str);
 void	cleanup(t_arguments *args);
 void	cleanup_forks(t_arguments *args);
 int		check_death(t_arguments *args);
 void	handle_pthreads(t_arguments *args);
+void	handle_one_pthread(t_arguments *args);
 
 #endif

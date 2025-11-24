@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
+/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:43:24 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/24 06:05:00 by dreix            ###   ########.fr       */
+/*   Updated: 2025/11/24 18:55:24 by darosas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ long	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	ft_usleep(long ms)
+void	ft_usleep(long ms, t_arguments *args)
 {
 	long	start;
 
 	start = get_time();
-	while ((get_time() - start) < ms)
+	while (((get_time() - start) < ms) && !check_death(args))
 		usleep(100);
 }
 

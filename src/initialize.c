@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
+/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:48:55 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/24 05:50:36 by dreix            ###   ########.fr       */
+/*   Updated: 2025/11/24 19:15:03 by darosas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	check_args(t_arguments *args, char **argv)
 				return (error_philo(NOT_DIGIT));
 		}
 	}
-	if (args->nb_philos < 2 || args->time_die < 0 || args->time_eat < 0
+	if (args->nb_philos < 1 || args->time_die < 0 || args->time_eat < 0
 		|| args->time_sleep < 0)
 		return (error_philo(BAD_AGV));
 	return (1);

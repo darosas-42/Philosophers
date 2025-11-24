@@ -8,6 +8,7 @@ SRC_PATH = ./src
 SRC = $(SRC_PATH)/main.c \
 	$(SRC_PATH)/initialize.c \
 	$(SRC_PATH)/threads_manager.c\
+	$(SRC_PATH)/one_thread.c \
 	$(SRC_PATH)/utils.c \
 	$(SRC_PATH)/utils2.c
 

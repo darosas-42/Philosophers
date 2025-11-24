@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
+/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:43:29 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/24 06:03:07 by dreix            ###   ########.fr       */
+/*   Updated: 2025/11/24 19:56:20 by darosas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	error_philo(int err_type)
 	if (err_type == NOT_DIGIT)
 		printf("Error: numeric parameters required.\n");
 	else if (err_type == BAD_AGV)
-		printf("Error: philosophers > 1 and \
-positive numeric parameters required.\n");
+		printf("Error: positive numeric parameters required.\n");
 	else if (err_type == AMT_AGV)
 		printf("Error: wrong amount of arguments.\n");
 	else if (err_type == MUTEX)
@@ -40,7 +39,10 @@ int	main(int argc, char **argv)
 	args.start_time = get_time();
 	if (!init_struct(&args, argv))
 		return (1);
-	handle_pthreads(&args);
+	if (args.nb_philos == 1)
+		handle_one_pthread(&args);
+	else
+		handle_pthreads(&args);
 	cleanup(&args);
 	return (0);
 }
