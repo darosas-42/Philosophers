@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:43:29 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/24 19:56:20 by darosas-         ###   ########.fr       */
+/*   Updated: 2025/11/26 03:33:38 by dreix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv)
 		error_philo(AMT_AGV);
 		return (1);
 	}
-	args.start_time = get_time();
 	if (!init_struct(&args, argv))
 		return (1);
 	if (args.nb_philos == 1)

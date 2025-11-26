@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   one_thread.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 19:44:05 by darosas-          #+#    #+#             */
-/*   Updated: 2025/11/24 19:57:57 by darosas-         ###   ########.fr       */
+/*   Updated: 2025/11/26 03:33:59 by dreix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	*one_philo(void *arg)
 
 void	handle_one_pthread(t_arguments *args)
 {
+	args->start_time = get_time();
 	args->philos[0].last_meal = get_time();
 	pthread_create(&args->philos[0].thread, NULL, one_philo, \
 &args->philos[0]);

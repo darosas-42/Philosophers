@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:54:52 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/24 21:26:23 by darosas-         ###   ########.fr       */
+/*   Updated: 2025/11/26 04:22:06 by dreix            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ static void	*philo_routine(void *arg)
 	int		s_fork;
 
 	philo = (t_philo *)arg;
-/* 	f_fork = philo->right_fork_id;
-	s_fork = philo->left_fork_id;
-	if (philo->left_fork_id < philo->right_fork_id)
-	{ */
+
 	f_fork = philo->left_fork_id;
 	s_fork = philo->right_fork_id;
+/* 	if (philo->id % 2 != 0 && philo->id != philo->data->nb_philos)
+	{
+		f_fork = philo->right_fork_id;
+		s_fork = philo->left_fork_id;
+	} */
 	if (philo->id % 2 == 0)
 		ft_usleep(5, philo->data);
 	while (!check_death(philo->data))
@@ -80,16 +82,18 @@ static void	checker(t_arguments *args)
 {
 	int		i;
 	long	last_meal_safe;
+	long	getting_time;
 
 	while (!check_death(args))
 	{
 		i = -1;
+		getting_time = get_time();
 		while ((++i < args->nb_philos) && !check_death(args))
 		{
 			pthread_mutex_lock(&args->last_meal_lock);
 			last_meal_safe = args->philos[i].last_meal;
 			pthread_mutex_unlock(&args->last_meal_lock);
-			if ((get_time() - last_meal_safe) > args->time_die)
+			if ((getting_time - last_meal_safe) > args->time_die)
 			{
 				print_status(&args->philos[i], "died");
 				pthread_mutex_lock(&args->s1died_lock);
@@ -107,9 +111,10 @@ void	handle_pthreads(t_arguments *args)
 	int			i;
 
 	i = 0;
+	args->start_time = get_time();
 	while (i < args->nb_philos)
 	{
-		args->philos[i].last_meal = get_time();
+		args->philos[i].last_meal = args->start_time;
 		pthread_create(&args->philos[i].thread, NULL, philo_routine, \
 &args->philos[i]);
 		i++;
