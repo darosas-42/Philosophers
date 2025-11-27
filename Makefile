@@ -2,7 +2,7 @@ NAME = philo
 
 COMPILER = cc
 
-FLAGS = -Wall -Werror -Wextra -I ./include
+FLAGS = -Wall -Werror -Wextra -I ./include -fsanitize=thread
 
 SRC_PATH = ./src
 SRC = $(SRC_PATH)/main.c \

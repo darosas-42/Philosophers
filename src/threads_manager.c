@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dreix <darosas-@student.42malaga.com>      +#+  +:+       +#+        */
+/*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:54:52 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/26 04:22:06 by dreix            ###   ########.fr       */
+/*   Updated: 2025/11/27 18:46:43 by darosas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,13 @@ static void	*philo_routine(void *arg)
 	int		s_fork;
 
 	philo = (t_philo *)arg;
-
 	f_fork = philo->left_fork_id;
 	s_fork = philo->right_fork_id;
-/* 	if (philo->id % 2 != 0 && philo->id != philo->data->nb_philos)
+	if (philo->id % 2 != 0)
 	{
 		f_fork = philo->right_fork_id;
 		s_fork = philo->left_fork_id;
-	} */
+	}
 	if (philo->id % 2 == 0)
 		ft_usleep(5, philo->data);
 	while (!check_death(philo->data))
