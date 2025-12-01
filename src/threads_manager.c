@@ -6,7 +6,7 @@
 /*   By: darosas- <darosas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 05:54:52 by dreix             #+#    #+#             */
-/*   Updated: 2025/11/27 18:46:43 by darosas-         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:21:44 by darosas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ static void	philo_eat(t_philo *philo, int f_fork, int s_fork)
 	pthread_mutex_lock(&philo->data->philo_meals);
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->data->philo_meals);
-	pthread_mutex_unlock(&philo->data->forks[s_fork]);
 	pthread_mutex_unlock(&philo->data->forks[f_fork]);
+	pthread_mutex_unlock(&philo->data->forks[s_fork]);
 	print_status(philo, "is sleeping");
 	ft_usleep(philo->data->time_sleep, philo->data);
 	print_status(philo, "is thinking");
+	ft_usleep(1, philo->data);
 }
 
 static void	*philo_routine(void *arg)
@@ -42,12 +43,12 @@ static void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	f_fork = philo->left_fork_id;
 	s_fork = philo->right_fork_id;
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 == 0)
 	{
 		f_fork = philo->right_fork_id;
 		s_fork = philo->left_fork_id;
 	}
-	if (philo->id % 2 == 0)
+	if (philo->id % 2 != 0)
 		ft_usleep(5, philo->data);
 	while (!check_death(philo->data))
 		philo_eat(philo, f_fork, s_fork);
